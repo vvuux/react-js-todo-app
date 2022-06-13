@@ -6,23 +6,26 @@ import {v4 as uuidv4} from "uuid";
 
 class TodoContainer extends React.Component {
     state = {
-        todos: [
-            {
-                id: uuidv4(),
-                title: "Setup development environment",
-                completed: true
-            },
-            {
-                id: uuidv4(),
-                title: "Develop website and add content",
-                completed: false
-            },
-            {
-                id: uuidv4(),
-                title: "Deploy to live server",
-                completed: false
-            }
-        ],
+        todos: [],
+    }
+
+    componentDidMount() {
+        console.log("mount")
+        const temp = localStorage.getItem("todos")
+        const loadedTodos = JSON.parse(temp)
+        if (loadedTodos) {
+            this.setState({
+                todos: loadedTodos
+            })
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log("did update")
+        if (prevState.todos !== this.state.todos){
+            const temp = JSON.stringify(this.state.todos)
+            localStorage.setItem("todos", temp)
+        }
     }
 
     handleChange = (id) => {
@@ -73,6 +76,7 @@ class TodoContainer extends React.Component {
     }
 
     render() {
+        console.log("rendering")
         return (
             <div className="container">
                 <div className="inner">
