@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import TodoList from "./TodoList"
 import Header from "./Header";
 import InputTodo from "./InputTodo";
@@ -6,9 +6,8 @@ import {v4 as uuidv4} from "uuid";
 
 const TodoContainer = () => {
     console.log("TodoContainer: rendering")
-    const [todos, setTodos] = useState([])
 
-    console.log(todos)
+    const [todos, setTodos] = useState(getInitialTodos())
 
     const addTodo = title => {
         const newTodo = {
@@ -57,6 +56,29 @@ const TodoContainer = () => {
             })
         ])
     }
+
+    // useEffect(() => {
+    //     console.log("Hook: get item from local storage")
+
+    //     const temp = localStorage.getItem("todos")
+    //     const loadedTodos = JSON.parse(temp)
+
+    //     if (loadedTodos){
+    //         setTodos(loadedTodos)
+    //     }
+    // }, [])
+
+    function getInitialTodos(){
+        const temp = localStorage.getItem("todos")
+        const savedTodos = JSON.parse(temp)
+        return savedTodos || []
+    }
+
+    useEffect(() => {
+        console.log("Hook: update item")
+        const temp = JSON.stringify(todos)
+        localStorage.setItem("todos", temp)
+    }, [todos])
 
     return (
         <div className="container">
