@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+
 import TodoList from "./TodoList"
 import Header from "./Header";
 import InputTodo from "./InputTodo";
@@ -81,20 +82,22 @@ const TodoContainer = () => {
     }, [todos])
 
     return (
-        <div className="container">
-            <div className="inner">
-                <Header />
-                <InputTodo
-                    addTodoProps={addTodo}
-                />
-                <TodoList
-                    todos={todos}
-                    handleCompletedProps={handleCompleted}
-                    deleteTodoProps={deleteTodo}
-                    setUpdateTodoProps={setUpdateTodo}
-                />
+        <>
+            <div className="container">
+                <div className="inner">
+                    <Header />
+                    <InputTodo
+                        addTodoProps={addTodo}
+                    />
+                    <TodoList
+                        todos={todos}
+                        handleCompletedProps={handleCompleted}
+                        deleteTodoProps={deleteTodo}
+                        setUpdateTodoProps={setUpdateTodo}
+                    />
+                </div>
             </div>
-        </div>
+        </> 
     )
 }
 
