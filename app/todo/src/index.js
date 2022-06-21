@@ -7,6 +7,7 @@ import TodoContainer from "./functionBased/components/TodoContainer";
 import About from "./functionBased/pages/About";
 import NotMatch from "./functionBased/pages/NotMatch";
 import Navbar from "./functionBased/components/Navbar";
+import SinglePage from "./functionBased/pages/SinglePage";
 
 // stylesheet
 import "./functionBased/App.css"
@@ -20,8 +21,11 @@ root.render(
     <Router>
       <Navbar></Navbar>  
       <Routes>
-        <Route exact path="/" element={<TodoContainer/>}></Route>
-        <Route path="/about" element={<About/>}></Route>
+        <Route index element={<TodoContainer/>}></Route>
+        <Route path="/about">
+          <Route index element={<About/>}/>
+          <Route path=":slug" element={<SinglePage/>}/>
+        </Route>
         <Route path="*" element={<NotMatch/>}></Route>
       </Routes>
     </Router>
