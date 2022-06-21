@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { FaPlusCircle, IconContext } from "react-icons/fa"
 
 class InputTodo extends Component {
     state = {
@@ -35,7 +36,25 @@ class InputTodo extends Component {
                     name="title"
                     onChange={this.onChange}
                 />
-                <button className="input-submit">Submit</button>
+                <button className="input-submit">
+                    <FaPlusCircle/>
+                </button>
+
+                /*
+                <IconContext.Provider
+                        value={{
+                            color: "darkcyan",
+                            style: { fontSize: "20px", color: "#ff0000" },
+                            className: "submit-icons"
+                        }}
+                    >
+                        /* Wrap icon components here */
+                        <button className="input-submit">
+                            /* icon components */
+                        </button>
+
+                </IconContext.Provider>
+                */
             </form>
         )
     }

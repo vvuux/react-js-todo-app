@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { FaTrash } from "react-icons/fa";
 
 import styles from "./TodoItem.module.css"
 
@@ -54,7 +55,11 @@ const TodoItem = props => {
                     checked={completed}
                     onChange={() => props.handleCompletedProps(id)}
                 />
-                <button onClick={() => props.deleteTodoProps(id)}>Delete</button>
+                <button onClick={() => props.deleteTodoProps(id)}>
+                    <FaTrash
+                        style={{ color: "red", fontSize: "16px" }}
+                    />
+                </button>
                 <span onDoubleClick={handleEditing} style={completed ? completedStyle : null}>{title}</span>
             </div>
             <input
