@@ -1,12 +1,12 @@
 import React from "react";
 import {useLocation, Link} from "react-router-dom";
 
-const About = props => {
+const About = () => {
     const {pathname} = useLocation()
 
     return (
-        <div>
-            <ul>
+        <div className="about__content">
+            <ul className="about__list">
                 <li>
                     <Link to={`${pathname}/app`}>App</Link>
                 </li>
